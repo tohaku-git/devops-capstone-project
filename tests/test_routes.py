@@ -136,7 +136,7 @@ class TestAccountService(TestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
         self.assertEqual(data["name"], account.name)
-    
+
     def test_account_not_found(self):
         """It should not Read an Account that is not found"""
         resp = self.client.get(
@@ -150,7 +150,7 @@ class TestAccountService(TestCase):
         resp = self.client.get(
             BASE_URL,
             content_type="application/json"
-        )        
+        )
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
         self.assertEqual(len(data), 5)
@@ -161,10 +161,10 @@ class TestAccountService(TestCase):
         resp = self.client.post(
             BASE_URL,
             json=test_account.serialize(),
-            content_type="application/json"            
+            content_type="application/json"
         )
         self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
-        
+
         new_account = resp.get_json()
         new_account["name"] = "NEW NAME"
         resp = self.client.put(
